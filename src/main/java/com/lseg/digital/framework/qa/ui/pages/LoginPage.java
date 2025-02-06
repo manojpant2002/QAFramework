@@ -10,18 +10,15 @@ public class LoginPage extends BasePage {
     private static final String PAGE_NAME = "LoginPage";
 
     private WebElement getUsernameInput() {
-        String locator = ExcelObjectRepository.getLocator(PAGE_NAME, "username");
-        return findElement(locator);
+        return findElement(ExcelObjectRepository.getLocator(PAGE_NAME, "username"));
     }
 
     private WebElement getPasswordInput() {
-        String locator = ExcelObjectRepository.getLocator(PAGE_NAME, "password");
-        return findElement(locator);
+        return findElement(ExcelObjectRepository.getLocator(PAGE_NAME, "password"));
     }
 
     private WebElement getLoginButton() {
-        String locator = ExcelObjectRepository.getLocator(PAGE_NAME, "loginButton");
-        return findElement(locator);
+        return findElement(ExcelObjectRepository.getLocator(PAGE_NAME, "loginButton"));
     }
 
     public LoginPage(WebDriver driver) {
