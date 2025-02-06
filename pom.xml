@@ -20,6 +20,8 @@
       <implicit.wait.timeout>5</implicit.wait.timeout>
       <page.load.timeout>30</page.load.timeout>
       <apache.poi.version>5.2.3</apache.poi.version>
+      <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+      <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
    </properties>
 
    <dependencies>

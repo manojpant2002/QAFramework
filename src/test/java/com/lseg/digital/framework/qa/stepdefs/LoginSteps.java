@@ -14,7 +14,7 @@ public class LoginSteps {
     @Before
     public void setUp() {
         DriverManager.initializeDriver();
-        loginPage = new LoginPage();
+        loginPage = new LoginPage(DriverManager.getDriver());
     }
 
     @After
@@ -24,11 +24,12 @@ public class LoginSteps {
 
     @Given("I am on the login page")
     public void iAmOnTheLoginPage() {
-        DriverManager.getDriver().get(DriverManager.getConfigManager().getBaseUrl());
+        // Initialize LoginPage with WebDriver from DriverManager
+        loginPage = new LoginPage(DriverManager.getDriver());
     }
 
-    @When("I enter username {string} and password {string}")
-    public void iEnterCredentials(String username, String password) {
+    @When("I login with username {string} and password {string}")
+    public void iLoginWithUsernameAndPassword(String username, String password) {
         loginPage.login(username, password);
     }
 
