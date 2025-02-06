@@ -9,10 +9,34 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 import java.util.List;
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 @Slf4j
 public class SeleniumUtils {
     
+    private static final ThreadLocal<Map<WebDriver, WebDriverWait>> waitMap = 
+        ThreadLocal.withInitial(ConcurrentHashMap::new);
+    
+    private static final ThreadLocal<Map<WebDriver, Actions>> actionsMap = 
+        ThreadLocal.withInitial(ConcurrentHashMap::new);
+
+    /**
+     * Gets or creates a WebDriverWait instance for the given driver
+     */
+    private static WebDriverWait getWait(WebDriver driver) {
+        return waitMap.get().computeIfAbsent(driver,
+            d -> new WebDriverWait(d, Duration.ofSeconds(10)));
+    }
+
+    /**
+     * Gets or creates an Actions instance for the given driver
+     */
+    private static Actions getActions(WebDriver driver) {
+        return actionsMap.get().computeIfAbsent(driver,
+            Actions::new);
+    }
+
     /**
      * Safely sends keys to an element after clearing existing text
      */
@@ -20,8 +44,10 @@ public class SeleniumUtils {
         try {
             waitForElementToBeClickable(driver, element);
             highlightElement(driver, element);
-            element.clear();
-            element.sendKeys(text);
+            synchronized (element) {
+                element.clear();
+                element.sendKeys(text);
+            }
             log.debug("Sent text '{}' to element: {}", text, element);
         } catch (Exception e) {
             log.error("Failed to send keys to element: {}", element, e);
@@ -36,7 +62,9 @@ public class SeleniumUtils {
         try {
             waitForElementToBeClickable(driver, element);
             highlightElement(driver, element);
-            element.click();
+            synchronized (element) {
+                element.click();
+            }
             log.debug("Clicked element: {}", element);
         } catch (Exception e) {
             log.error("Failed to click element: {}", element, e);
@@ -107,8 +135,7 @@ public class SeleniumUtils {
      */
     public static void hoverOverElement(WebDriver driver, WebElement element) {
         try {
-            Actions actions = new Actions(driver);
-            actions.moveToElement(element).perform();
+            getActions(driver).moveToElement(element).perform();
             log.debug("Hovered over element: {}", element);
         } catch (Exception e) {
             log.error("Failed to hover over element: {}", element, e);
@@ -121,8 +148,7 @@ public class SeleniumUtils {
      */
     public static void waitForElementToBeClickable(WebDriver driver, WebElement element) {
         try {
-            WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-            wait.until(ExpectedConditions.elementToBeClickable(element));
+            getWait(driver).until(ExpectedConditions.elementToBeClickable(element));
             log.debug("Element is clickable: {}", element);
         } catch (Exception e) {
             log.error("Element not clickable: {}", element, e);
@@ -135,8 +161,7 @@ public class SeleniumUtils {
      */
     public static void waitForElementToBeVisible(WebDriver driver, WebElement element) {
         try {
-            WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-            wait.until(ExpectedConditions.visibilityOf(element));
+            getWait(driver).until(ExpectedConditions.visibilityOf(element));
             log.debug("Element is visible: {}", element);
         } catch (Exception e) {
             log.error("Element not visible: {}", element, e);
@@ -203,8 +228,7 @@ public class SeleniumUtils {
      */
     public static void acceptAlert(WebDriver driver) {
         try {
-            WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-            wait.until(ExpectedConditions.alertIsPresent());
+            getWait(driver).until(ExpectedConditions.alertIsPresent());
             driver.switchTo().alert().accept();
             log.debug("Accepted alert");
         } catch (Exception e) {
@@ -218,8 +242,7 @@ public class SeleniumUtils {
      */
     public static void dismissAlert(WebDriver driver) {
         try {
-            WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-            wait.until(ExpectedConditions.alertIsPresent());
+            getWait(driver).until(ExpectedConditions.alertIsPresent());
             driver.switchTo().alert().dismiss();
             log.debug("Dismissed alert");
         } catch (Exception e) {
@@ -271,6 +294,21 @@ public class SeleniumUtils {
         } catch (Exception e) {
             log.error("Failed to get options from select element: {}", element, e);
             throw e;
+        }
+    }
+
+    /**
+     * Cleans up thread-local resources
+     */
+    public static void cleanupThreadLocals() {
+        try {
+            waitMap.get().clear();
+            actionsMap.get().clear();
+            waitMap.remove();
+            actionsMap.remove();
+            log.debug("Cleaned up thread-local resources");
+        } catch (Exception e) {
+            log.error("Failed to cleanup thread-local resources", e);
         }
     }
 } 

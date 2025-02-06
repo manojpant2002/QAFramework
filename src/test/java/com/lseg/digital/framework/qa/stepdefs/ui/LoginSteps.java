@@ -8,6 +8,7 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.When;
 import io.cucumber.java.en.Then;
 import lombok.extern.slf4j.Slf4j;
+import com.lseg.digital.framework.qa.utils.SeleniumUtils;
 
 @Slf4j
 public class LoginSteps {
@@ -21,6 +22,7 @@ public class LoginSteps {
 
     @After
     public void tearDown() {
+        SeleniumUtils.cleanupThreadLocals();
         DriverManager.quitDriver();
     }
 
