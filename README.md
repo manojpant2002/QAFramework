@@ -24,3 +24,12 @@
 - mvn clean test -DtestNG.suite.file=src/test/resources/testng-ui.xml -P chrome,qa
 ####Run UI tests with different browser and environment
 - mvn clean test -DtestNG.suite.file=src/test/resources/testng-ui.xml -P firefox,uat
+
+K6 Performance Test
+k6 run \
+  -e BASE_URL=https://qa.example.com \
+  -e VUS=10000 \
+  -e DURATION=1s \
+  -e ENDPOINT=/api/health \
+  -e COOLDOWN=30 \
+  login-performance.js

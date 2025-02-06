@@ -21,7 +21,6 @@ public class ConfigManager {
             System.getProperty("implicit.wait.timeout", "5"));
         this.pageLoadTimeout = Long.parseLong(
             System.getProperty("page.load.timeout", "30"));
-        
         log.debug("Configuration initialized with baseUrl: {}, apiBaseUrl: {}", 
             baseUrl, apiBaseUrl);
     }
