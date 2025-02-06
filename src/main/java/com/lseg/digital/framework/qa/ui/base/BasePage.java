@@ -5,6 +5,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import lombok.extern.slf4j.Slf4j;
+import java.time.Duration;
 
 @Slf4j
 public class BasePage {
@@ -14,7 +15,7 @@ public class BasePage {
     public BasePage(WebDriver driver) {
         log.debug("Initializing BasePage with driver: {}", driver.getClass().getSimpleName());
         this.driver = driver;
-        this.wait = new WebDriverWait(driver, DriverManager.getConfigManager().getExplicitWaitTimeout());
+        this.wait = new WebDriverWait(driver, Duration.ofSeconds(DriverManager.getConfigManager().getExplicitWaitTimeout()));
         PageFactory.initElements(driver, this);
         log.debug("BasePage initialized with explicit wait timeout: {} seconds", 
             DriverManager.getConfigManager().getExplicitWaitTimeout());
