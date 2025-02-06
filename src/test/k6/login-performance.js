@@ -13,7 +13,7 @@ const pageLoadTime = new Trend('page_load_time');
 const BASE_URL = validateUrl(__ENV.BASE_URL);
 const VUS = validateNumber(__ENV.VUS, 'VUS', 10000);
 const DURATION = validateDuration(__ENV.DURATION, '1s');
-const ENDPOINT = __ENV.ENDPOINT || '/api/health';
+//const ENDPOINT = __ENV.ENDPOINT || '/api/health';
 const COOLDOWN = validateNumber(__ENV.COOLDOWN, 'COOLDOWN', 30); // Cooldown period in seconds
 
 export const options = {
