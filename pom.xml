@@ -23,6 +23,7 @@
       <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
       <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
       <testng.suite.file>src/test/resources/testng-api.xml</testng.suite.file>
+      <lombok.version>1.18.30</lombok.version>
    </properties>
 
    <dependencies>
@@ -76,6 +77,14 @@
          <groupId>org.apache.poi</groupId>
          <artifactId>poi-ooxml</artifactId>
          <version>${apache.poi.version}</version>
+      </dependency>
+
+      <!-- Lombok -->
+      <dependency>
+         <groupId>org.projectlombok</groupId>
+         <artifactId>lombok</artifactId>
+         <version>${lombok.version}</version>
+         <scope>provided</scope>
       </dependency>
    </dependencies>
 
