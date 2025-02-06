@@ -9,21 +9,20 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 public class LoginPage extends BasePage {
-    private static final String PAGE_NAME = "LoginPage";
 
     private WebElement getUsernameInput() {
         log.debug("Getting username input element");
-        return findElement(ExcelObjectRepository.getLocator(PAGE_NAME, "username"));
+        return findElement(ExcelObjectRepository.getLocator(pageName, "username"));
     }
 
     private WebElement getPasswordInput() {
         log.debug("Getting password input element");
-        return findElement(ExcelObjectRepository.getLocator(PAGE_NAME, "password"));
+        return findElement(ExcelObjectRepository.getLocator(pageName, "password"));
     }
 
     private WebElement getLoginButton() {
         log.debug("Getting login button element");
-        return findElement(ExcelObjectRepository.getLocator(PAGE_NAME, "loginButton"));
+        return findElement(ExcelObjectRepository.getLocator(pageName, "loginButton"));
     }
 
     public LoginPage(WebDriver driver) {
