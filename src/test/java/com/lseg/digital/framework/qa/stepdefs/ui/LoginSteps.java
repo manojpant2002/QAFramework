@@ -1,4 +1,4 @@
-package com.lseg.digital.framework.qa.stepdefs;
+package com.lseg.digital.framework.qa.stepdefs.ui;
 
 import com.lseg.digital.framework.qa.driver.DriverManager;
 import com.lseg.digital.framework.qa.ui.pages.LoginPage;
