@@ -5,48 +5,70 @@ import com.lseg.digital.framework.qa.utils.ExcelObjectRepository;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.By;
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 public class LoginPage extends BasePage {
     private static final String PAGE_NAME = "LoginPage";
 
     private WebElement getUsernameInput() {
+        log.debug("Getting username input element");
         return findElement(ExcelObjectRepository.getLocator(PAGE_NAME, "username"));
     }
 
     private WebElement getPasswordInput() {
+        log.debug("Getting password input element");
         return findElement(ExcelObjectRepository.getLocator(PAGE_NAME, "password"));
     }
 
     private WebElement getLoginButton() {
+        log.debug("Getting login button element");
         return findElement(ExcelObjectRepository.getLocator(PAGE_NAME, "loginButton"));
     }
 
     public LoginPage(WebDriver driver) {
         super(driver);
+        log.info("LoginPage initialized");
     }
 
     public void login(String username, String password) {
+        log.info("Attempting login with username: {}", username);
         getUsernameInput().sendKeys(username);
         getPasswordInput().sendKeys(password);
+        log.debug("Clicking login button");
         getLoginButton().click();
+        log.info("Login attempt completed");
     }
 
     private WebElement findElement(String locator) {
+        log.debug("Finding element with locator: {}", locator);
         String[] parts = locator.split("=", 2);
         String type = parts[0];
         String value = parts[1];
 
-        switch (type.toLowerCase()) {
-            case "id":
-                return driver.findElement(By.id(value));
-            case "name":
-                return driver.findElement(By.name(value));
-            case "xpath":
-                return driver.findElement(By.xpath(value));
-            case "css":
-                return driver.findElement(By.cssSelector(value));
-            default:
-                throw new IllegalArgumentException("Unsupported locator type: " + type);
+        WebElement element;
+        try {
+            switch (type.toLowerCase()) {
+                case "id":
+                    element = driver.findElement(By.id(value));
+                    break;
+                case "name":
+                    element = driver.findElement(By.name(value));
+                    break;
+                case "xpath":
+                    element = driver.findElement(By.xpath(value));
+                    break;
+                case "css":
+                    element = driver.findElement(By.cssSelector(value));
+                    break;
+                default:
+                    throw new IllegalArgumentException("Unsupported locator type: " + type);
+            }
+            log.debug("Element found successfully with {}: {}", type, value);
+            return element;
+        } catch (Exception e) {
+            log.error("Failed to find element with {}: {}", type, value, e);
+            throw e;
         }
     }
 } 

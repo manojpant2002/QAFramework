@@ -6,7 +6,9 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 public class ExcelObjectRepository {
     private static final String OBJECT_REPOSITORY_PATH = "src/test/resources/object-repository/ObjectRepository.xlsx";
     private static Map<String, Map<String, String>> pageObjectsCache = new HashMap<>();
@@ -16,16 +18,16 @@ public class ExcelObjectRepository {
     }
 
     private static void loadObjectRepository() {
+        log.info("Loading object repository from: {}", OBJECT_REPOSITORY_PATH);
         try (FileInputStream fis = new FileInputStream(OBJECT_REPOSITORY_PATH);
              Workbook workbook = new XSSFWorkbook(fis)) {
             
-            // Iterate through all sheets in the workbook
             for (int i = 0; i < workbook.getNumberOfSheets(); i++) {
                 Sheet sheet = workbook.getSheetAt(i);
                 String pageName = sheet.getSheetName();
+                log.debug("Processing sheet: {}", pageName);
                 Map<String, String> pageObjects = new HashMap<>();
 
-                // Skip first row as it contains headers
                 for (int rowNum = 1; rowNum <= sheet.getLastRowNum(); rowNum++) {
                     Row row = sheet.getRow(rowNum);
                     if (row != null) {
@@ -35,12 +37,17 @@ public class ExcelObjectRepository {
                         
                         if (elementName != null && locatorType != null && locatorValue != null) {
                             pageObjects.put(elementName, locatorType + "=" + locatorValue);
+                            log.debug("Added locator for element: {} = {}={}", 
+                                elementName, locatorType, locatorValue);
                         }
                     }
                 }
                 pageObjectsCache.put(pageName, pageObjects);
+                log.info("Loaded {} elements for page: {}", pageObjects.size(), pageName);
             }
+            log.info("Object repository loaded successfully with {} pages", pageObjectsCache.size());
         } catch (IOException e) {
+            log.error("Failed to load object repository", e);
             throw new RuntimeException("Failed to load object repository: " + e.getMessage(), e);
         }
     }

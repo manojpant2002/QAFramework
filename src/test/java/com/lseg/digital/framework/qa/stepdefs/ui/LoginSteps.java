@@ -7,7 +7,9 @@ import io.cucumber.java.Before;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.When;
 import io.cucumber.java.en.Then;
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 public class LoginSteps {
     private LoginPage loginPage;
 
@@ -24,13 +26,16 @@ public class LoginSteps {
 
     @Given("I am on the login page")
     public void iAmOnTheLoginPage() {
-        // Initialize LoginPage with WebDriver from DriverManager
+        log.info("Initializing login page");
         loginPage = new LoginPage(DriverManager.getDriver());
+        log.info("Login page initialized successfully");
     }
 
     @When("I login with username {string} and password {string}")
     public void iLoginWithUsernameAndPassword(String username, String password) {
+        log.info("Performing login with username: {}", username);
         loginPage.login(username, password);
+        log.info("Login action completed");
     }
 
     @Then("I should be logged in successfully")

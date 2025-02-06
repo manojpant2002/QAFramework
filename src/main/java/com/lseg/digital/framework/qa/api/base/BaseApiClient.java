@@ -3,8 +3,12 @@ package com.lseg.digital.framework.qa.api.base;
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
+import lombok.extern.slf4j.Slf4j;
+import static io.restassured.RestAssured.given;
+
 import java.util.Map;
 
+@Slf4j
 public class BaseApiClient {
     protected RequestSpecification request;
     protected String baseUrl;
@@ -15,8 +19,17 @@ public class BaseApiClient {
     private String DEFAULT_CONTENT_TYPE = "application/json";
 
     public BaseApiClient() {
-        this.request = RestAssured.given()
-                .contentType(DEFAULT_CONTENT_TYPE);
+        log.debug("Initializing BaseApiClient");
+        this.baseUrl = System.getProperty("apiBaseUrl");
+        initializeRequest();
+    }
+
+    private void initializeRequest() {
+        log.debug("Setting up base request specification with URL: {}", baseUrl);
+        this.request = given()
+            .baseUri(baseUrl)
+            .contentType(DEFAULT_CONTENT_TYPE);
+        log.info("Base request specification initialized");
     }
 
     /**
@@ -189,7 +202,9 @@ public class BaseApiClient {
      * @return BaseApiClient instance for method chaining
      */
     public BaseApiClient setBearerToken(String token) {
+        log.debug("Setting authorization token");
         request.header("Authorization", "Bearer " + token);
+        log.info("Authorization token set successfully");
         return this;
     }
 
