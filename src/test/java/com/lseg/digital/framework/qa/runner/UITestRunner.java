@@ -8,7 +8,8 @@ import io.cucumber.testng.CucumberOptions;
     glue = {"com.lseg.digital.framework.qa.stepdefs.ui"},
     plugin = {
         "pretty",
-        "html:target/cucumber-reports/ui-report.html"
+        "html:target/cucumber-reports/ui-report.html",
+        "json:target/cucumber-reports/ui-report.json"
     }
 )
 public class UITestRunner extends AbstractTestNGCucumberTests {

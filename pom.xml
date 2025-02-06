@@ -22,6 +22,7 @@
       <apache.poi.version>5.2.3</apache.poi.version>
       <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
       <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+      <testng.suite.file>src/test/resources/testng-api.xml</testng.suite.file>
    </properties>
 
    <dependencies>
@@ -188,7 +189,7 @@
                   <page.load.timeout>${page.load.timeout}</page.load.timeout>
                </systemPropertyVariables>
                <suiteXmlFiles>
-                  <suiteXmlFile>testng.xml</suiteXmlFile>
+                  <suiteXmlFile>${testng.suite.file}</suiteXmlFile>
                </suiteXmlFiles>
             </configuration>
          </plugin>
