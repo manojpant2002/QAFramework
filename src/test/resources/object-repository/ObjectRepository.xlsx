@@ -1,0 +1,17 @@
+Sheet: LoginPage
+ElementName  | LocatorType | LocatorValue
+username     | id         | username-input
+password     | id         | password-input
+loginButton  | xpath      | //button[@type='submit']
+
+Sheet: HomePage
+ElementName  | LocatorType | LocatorValue
+welcomeText  | css        | .welcome-message
+logoutButton | id         | logout-btn
+userProfile  | xpath      | //div[@class='user-profile']
+
+Sheet: SearchPage
+ElementName  | LocatorType | LocatorValue
+searchInput  | id         | search-box
+searchButton | css        | .search-btn
+resultsList  | xpath      | //div[@class='search-results'] 
