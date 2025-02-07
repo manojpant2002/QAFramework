@@ -1,3 +1,28 @@
+# Test Automation Framework
+
+A comprehensive test automation framework supporting UI, API, and Performance testing.
+
+## Prerequisites
+
+- Java 11 or higher
+- Maven 3.6 or higher
+- Node.js 14+ (for k6 performance tests)
+- k6 installed globally (`npm install -g k6`)
+
+## Framework Features
+
+- Selenium WebDriver for UI testing
+- REST Assured for API testing
+- k6 for Performance testing
+- Cucumber BDD
+- Parallel execution support
+- Automatic screenshot capture on failures
+- Excel-based object repository
+- Environment-specific configurations
+- Detailed logging
+- Cross-browser testing
+
+
 ## Running Tests
 
 ### Available Maven Profiles
