@@ -119,79 +119,23 @@
       <profile>
          <id>chrome</id>
          <properties>
-            <browser>chrome</browser>
-         </properties>
-         <activation>
-            <activeByDefault>true</activeByDefault>
-         </activation>
-      </profile>
-      
-      <profile>
-         <id>firefox</id>
-         <properties>
-            <browser>firefox</browser>
-         </properties>
-      </profile>
-      
-      <profile>
-         <id>edge</id>
-         <properties>
-            <browser>edge</browser>
-         </properties>
-      </profile>
-      
-      <profile>
-         <id>safari</id>
-         <properties>
-            <browser>safari</browser>
-         </properties>
-      </profile>
-      
-      <profile>
-         <id>uc</id>
-         <properties>
-            <browser>uc</browser>
-         </properties>
-      </profile>
-
-      <!-- Environment Profiles -->
-      <profile>
-         <id>qa</id>
-         <properties>
+            <browser>chrome-qa</browser>
             <env>qa</env>
-            <baseUrl>https://qa.example.com</baseUrl>
-            <apiBaseUrl>https://api.qa.example.com</apiBaseUrl>
+            <login.page.url></login.page.url>
          </properties>
          <activation>
             <activeByDefault>true</activeByDefault>
          </activation>
       </profile>
-
       <profile>
-         <id>uat</id>
+         <id>chrome</id>
          <properties>
-            <env>uat</env>
-            <baseUrl>https://uat.example.com</baseUrl>
-            <apiBaseUrl>https://api.uat.example.com</apiBaseUrl>
+            <browser>api-qa</browser>
+            <env>qa</env>
          </properties>
-      </profile>
-
-      <profile>
-         <id>ppe</id>
-         <properties>
-            <env>ppe</env>
-            <baseUrl>https://ppe.example.com</baseUrl>
-            <apiBaseUrl>https://api.ppe.example.com</apiBaseUrl>
-         </properties>
-      </profile>
-
-      <profile>
-         <id>prod</id>
-         <properties>
-            <env>prod</env>
-            <baseUrl>https://www.example.com</baseUrl>
-            <apiBaseUrl>https://api.example.com</apiBaseUrl>
-         </properties>
+         <activation>
+            <activeByDefault>true</activeByDefault>
+         </activation>
       </profile>
    </profiles>
 
