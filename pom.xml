@@ -7,7 +7,6 @@
    <groupId>com.lseg.digital.framework.qa</groupId>
    <artifactId>test-automation-framework</artifactId>
    <version>1.0-SNAPSHOT</version>
-
    <properties>
       <maven.compiler.source>11</maven.compiler.source>
       <maven.compiler.target>11</maven.compiler.target>
@@ -117,9 +116,9 @@
    <profiles>
       <!-- Browser Profiles -->
       <profile>
-         <id>chrome</id>
+         <id>chrome-qa</id>
          <properties>
-            <browser>chrome-qa</browser>
+            <browser>chrome</browser>
             <env>qa</env>
             <login.page.url></login.page.url>
          </properties>
@@ -128,9 +127,9 @@
          </activation>
       </profile>
       <profile>
-         <id>chrome</id>
+         <id>api-qa</id>
          <properties>
-            <browser>api-qa</browser>
+            <apiBaseUrl>http://authentication-base-url.com</apiBaseUrl>
             <env>qa</env>
          </properties>
          <activation>
@@ -159,10 +158,6 @@
             <version>3.0.0-M5</version>
             <configuration>
                <systemPropertyVariables>
-                  <browser>${browser}</browser>
-                  <env>${env}</env>
-                  <baseUrl>${baseUrl}</baseUrl>
-                  <apiBaseUrl>${apiBaseUrl}</apiBaseUrl>
                   <explicit.wait.timeout>${explicit.wait.timeout}</explicit.wait.timeout>
                   <implicit.wait.timeout>${implicit.wait.timeout}</implicit.wait.timeout>
                   <page.load.timeout>${page.load.timeout}</page.load.timeout>
