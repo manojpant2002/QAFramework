@@ -100,6 +100,18 @@
          <artifactId>logback-classic</artifactId>
          <version>${logback.version}</version>
       </dependency>
+
+      <!-- Lighthouse -->
+      <dependency>
+         <groupId>org.seleniumhq.selenium</groupId>
+         <artifactId>selenium-devtools-v120</artifactId>
+         <version>${selenium.version}</version>
+      </dependency>
+      <dependency>
+         <groupId>com.deque.html.axe-core</groupId>
+         <artifactId>selenium</artifactId>
+         <version>4.4.1</version>
+      </dependency>
    </dependencies>
 
    <profiles>

@@ -2,10 +2,13 @@ package com.lseg.digital.framework.qa.base;
 
 import com.lseg.digital.framework.qa.driver.DriverManager;
 import com.lseg.digital.framework.qa.utils.ScreenshotUtils;
+import com.lseg.digital.framework.qa.utils.LighthouseUtils;
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
 import io.cucumber.java.Scenario;
 import lombok.extern.slf4j.Slf4j;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -20,14 +23,17 @@ public class BaseTest {
         DriverManager.initializeDriver();
     }
 
-    @After(order = 1) // Higher order runs first
-    public void captureFailureScreenshot(Scenario scenario) {
+    @After(order = 1)
+    public void generateReports(Scenario scenario) {
+        WebDriver driver = DriverManager.getDriver();
+        if (driver instanceof ChromeDriver) {
+            log.info("Generating Lighthouse report");
+            LighthouseUtils.generateLighthouseReport((ChromeDriver) driver, scenario.getName());
+        }
+        
         if (scenario.isFailed()) {
             log.info("Scenario failed, capturing screenshot");
-            String screenshotPath = ScreenshotUtils.captureScreenshot(
-                DriverManager.getDriver(), 
-                scenario.getName()
-            );
+            String screenshotPath = ScreenshotUtils.captureScreenshot(driver, scenario.getName());
             if (screenshotPath != null) {
                 try {
                     byte[] screenshot = Files.readAllBytes(Paths.get(screenshotPath));
@@ -39,10 +45,11 @@ public class BaseTest {
         }
     }
 
-    @After(order = 2) // Lower order runs last
+    @After(order = 2)
     public void tearDown() {
         log.info("Cleaning up test resources");
-        ScreenshotUtils.cleanup();  // Clean up screenshot resources
+        LighthouseUtils.cleanup();
+        ScreenshotUtils.cleanup();
         DriverManager.quitDriver();
     }
 } 

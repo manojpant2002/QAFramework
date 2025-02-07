@@ -58,3 +58,19 @@ k6 run \
   -e ENDPOINT=/api/health \
   -e COOLDOWN=30 \
   login-performance.js
+
+## Test Reports
+
+- Cucumber Reports: `target/cucumber-reports`
+- Screenshots: `test-output/screenshots`
+- Lighthouse Reports: `test-output/lighthouse-reports`
+- Performance Reports: `test-output/k6-reports`
+
+### Lighthouse Reports
+Lighthouse reports are automatically generated for Chrome browser tests and include:
+- Performance metrics
+- Accessibility scores
+- Best practices
+- SEO analysis
+
+Reports are generated per test and stored in thread-specific directories for parallel execution support.
