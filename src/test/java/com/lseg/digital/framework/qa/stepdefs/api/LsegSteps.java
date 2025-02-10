@@ -5,7 +5,7 @@ import io.cucumber.java.en.When;
 import io.cucumber.java.en.Then;
 import io.restassured.response.Response;
 import lombok.extern.slf4j.Slf4j;
-import static org.testng.Assert.*;
+import org.junit.jupiter.api.Assertions;
 
 @Slf4j
 public class LsegSteps {
@@ -24,7 +24,7 @@ public class LsegSteps {
     public void verify_status_code(int expectedStatusCode) {
         log.info("Verifying response status code. Expected: {}, Actual: {}",
                 expectedStatusCode, response.getStatusCode());
-        assertEquals(response.getStatusCode(), expectedStatusCode,
+        Assertions.assertEquals(response.getStatusCode(), expectedStatusCode,
                 "Expected status code " + expectedStatusCode + " but got " + response.getStatusCode());
     }
 }
