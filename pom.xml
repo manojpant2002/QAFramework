@@ -21,6 +21,7 @@
       <maven-failsafe-plugin.version>3.0.0-M5</maven-failsafe-plugin.version>
       <junit.version>5.10.0</junit.version>
       <cucumber.junit.platform.version>7.15.0</cucumber.junit.platform.version>
+	  <threadCount>5</threadCount>
    </properties>
 
    <dependencies>
@@ -91,7 +92,7 @@
                         </goals>
                         <configuration>
                            <parallel>classes</parallel>
-                           <threadCount>5</threadCount>
+                           <threadCount>${threadCount}</threadCount>
                            <systemPropertyVariables>
                               <baseUrl>https://lseg.com</baseUrl>
                               <cucumber.execution.parallel.enabled>true</cucumber.execution.parallel.enabled>
@@ -127,8 +128,8 @@
                   </executions>
                         <configuration>
                            <parallel>classes</parallel>
-                           <threadCount>5</threadCount>
-                           <systemPropertyVariables>
+                           <threadCount>${threadCount}</threadCount>
+						   <systemPropertyVariables>
                               <baseUrl>https://lseg.com</baseUrl>
                               <cucumber.execution.parallel.enabled>true</cucumber.execution.parallel.enabled>
                               <cucumber.execution.parallel.config.strategy>fixed</cucumber.execution.parallel.config.strategy>
@@ -161,7 +162,7 @@
                   </executions>
                      <configuration>
                            <parallel>classes</parallel>
-                           <threadCount>5</threadCount>
+                           <threadCount>${threadCount}</threadCount>
                            <systemPropertyVariables>
                               <baseUrl>https://lseg.com</baseUrl>
                               <cucumber.execution.parallel.enabled>true</cucumber.execution.parallel.enabled>
@@ -195,7 +196,7 @@
                   </executions>
                   <configuration>
                            <parallel>classes</parallel>
-                           <threadCount>5</threadCount>
+                           <threadCount>${threadCount}</threadCount>
                            <systemPropertyVariables>
                               <baseUrl>https://lseg.com</baseUrl>
                               <cucumber.execution.parallel.enabled>true</cucumber.execution.parallel.enabled>
@@ -229,7 +230,7 @@
                   </executions>
                   <configuration>
                            <parallel>classes</parallel>
-                           <threadCount>5</threadCount>
+                           <threadCount>${threadCount}</threadCount>
                            <systemPropertyVariables>
                               <baseUrl>https://lseg.com</baseUrl>
                               <cucumber.execution.parallel.enabled>true</cucumber.execution.parallel.enabled>
