@@ -4,9 +4,6 @@ import software.amazon.awssdk.services.sqs.model.*;
 import java.util.List;
 import java.util.concurrent.*;
 import software.amazon.awssdk.services.sqs.model.SendMessageResponse;
-import com.lseg.digital.framework.qa.util.SqsUtils;
-import java.util.stream.IntStream;
-
 public class ConcurrentSqsUtils {
     private final SqsUtils sqsUtils;
     private final ExecutorService executor;
