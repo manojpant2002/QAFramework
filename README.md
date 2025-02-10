@@ -56,5 +56,3 @@ mvn clean integration-test -Papiqa -Dcucumber.filter.tags="@auth and @token and 
 ## Test Reports
 
 - Cucumber Reports: `target/cucumber-reports`
-
-  Reports are generated per test and stored in thread-specific directories for parallel execution support.
