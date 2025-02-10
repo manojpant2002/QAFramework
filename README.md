@@ -6,7 +6,7 @@ A robust API testing framework built with REST Assured, TestNG, and Cucumber for
 
 - Java 11
 - REST Assured 5.4.0
-- TestNG 7.8.0
+- JUnit
 - Cucumber 7.15.0
 - Maven
 - Lombok

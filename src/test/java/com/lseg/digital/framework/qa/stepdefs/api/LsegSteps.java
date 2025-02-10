@@ -13,7 +13,7 @@ public class LsegSteps {
     Response response;
 
     @When("I make a request to {string} with credentials")
-    public void i_make_a_get_request_to_with_credentials(String endpoint) {
+    public void i_make_request_with_credentials(String endpoint) {
         log.info("Making GET request to endpoint: {}", endpoint);
         response = baseApiClient.get(endpoint,null,null);
         log.info("Response: {}", response.asString());
@@ -21,10 +21,10 @@ public class LsegSteps {
     }
 
     @Then("the response status code should be {int}")
-    public void the_response_status_code_should_be(Integer expectedStatusCode) {
+    public void verify_status_code(int expectedStatusCode) {
         log.info("Verifying response status code. Expected: {}, Actual: {}",
                 expectedStatusCode, response.getStatusCode());
-        assertEquals(response.getStatusCode(), expectedStatusCode.intValue(),
+        assertEquals(response.getStatusCode(), expectedStatusCode,
                 "Expected status code " + expectedStatusCode + " but got " + response.getStatusCode());
     }
 }
