@@ -44,6 +44,12 @@ A robust API testing framework built with REST Assured, TestNG, and Cucumber for
 -  mvn clean integration-test -Papiqa -P apidev
 -  mvn clean integration-test -Papiqa -P apiuat
 -  mvn clean integration-test -Papiqa -P apippe
+
+### Sample filtering
+Mixed operators - Run (smoke OR regression) AND NOT flaky
+mvn clean test -Dcucumber.filter.tags="(@smoke or @regression) and not @flaky"
+mvn clean test -Dcucumber.filter.tags="(@quick or @sanity) and (@core or @critical) and not @deprecated"
+mvn clean integration-test -Papiqa -Dcucumber.filter.tags="@auth and @token and @validation"
    
 
 ## Test Reports
