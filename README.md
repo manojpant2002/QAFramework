@@ -45,12 +45,11 @@ A robust API testing framework built with REST Assured, TestNG, and Cucumber for
 -  mvn clean test -P apippe
 -  mvn clean test -P apiprod
 
-### Sample filtering
-Mixed operators - Run (smoke OR regression) AND NOT flaky
-mvn clean test -P apiqa -Dcucumber.filter.tags="@api or @api2"
-mvn clean test -Dcucumber.filter.tags="(@smoke or @regression) and not @flaky"
-mvn clean test -Dcucumber.filter.tags="(@quick or @sanity) and (@core or @critical) and not @deprecated"
-mvn clean test -Papiqa -Dcucumber.filter.tags="@auth and @token and @validation"
+###Sample filter Mixed operators - Run (smoke OR regression) AND NOT
+-  mvn clean test -P apiqa -Dcucumber.filter.tags="@api or @api2"
+-  mvn clean test -Dcucumber.filter.tags="(@smoke or @regression) and not @flaky"
+-  mvn clean test -Dcucumber.filter.tags="(@quick or @sanity) and (@core or @critical) and not @deprecated"
+-  mvn clean test -Papiqa -Dcucumber.filter.tags="@auth and @token and @validation"
    
 
 ## Test Reports
