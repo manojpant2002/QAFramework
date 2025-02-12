@@ -37,20 +37,20 @@ A robust API testing framework built with REST Assured, TestNG, and Cucumber for
 - `dev`: Run tests against Production environment
 
 ####Run API tests with default profile (QA)
--  mvn clean integration-test [ will run apiqa profile , which is activated by default ]
+-  mvn clean test [ will run apiqa profile , which is activated by default ]
 
 ###Run API tests against specific environment
--  mvn clean integration-test -Papiqa -P apiqa
--  mvn clean integration-test -Papiqa -P apidev
--  mvn clean integration-test -Papiqa -P apiuat
--  mvn clean integration-test -Papiqa -P apippe
+-  mvn clean test -P apiqa
+-  mvn clean test -P apidev
+-  mvn clean test -P apippe
+-  mvn clean test -P apiprod
 
 ### Sample filtering
 Mixed operators - Run (smoke OR regression) AND NOT flaky
-mvn clean integration-test -P apiqa -Dcucumber.filter.tags="@api or @api2"
+mvn clean test -P apiqa -Dcucumber.filter.tags="@api or @api2"
 mvn clean test -Dcucumber.filter.tags="(@smoke or @regression) and not @flaky"
 mvn clean test -Dcucumber.filter.tags="(@quick or @sanity) and (@core or @critical) and not @deprecated"
-mvn clean integration-test -Papiqa -Dcucumber.filter.tags="@auth and @token and @validation"
+mvn clean test -Papiqa -Dcucumber.filter.tags="@auth and @token and @validation"
    
 
 ## Test Reports

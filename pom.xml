@@ -18,7 +18,7 @@
       <lombok.version>1.18.30</lombok.version>
       <slf4j.version>2.0.9</slf4j.version>
       <logback.version>1.4.14</logback.version>
-      <maven-failsafe-plugin.version>3.0.0-M5</maven-failsafe-plugin.version>
+      <maven-surefile-plugin.version>3.0.0-M5</maven-surefile-plugin.version>
       <junit.version>5.10.0</junit.version>
       <cucumber.junit.platform.version>7.15.0</cucumber.junit.platform.version>
 	  <threadCount>5</threadCount>
@@ -142,15 +142,9 @@
             <plugins>
                <plugin>
                   <groupId>org.apache.maven.plugins</groupId>
-                  <artifactId>maven-failsafe-plugin</artifactId>
-                  <version>${maven-failsafe-plugin.version}</version>
-                  <executions>
-                     <execution>
-                        <goals>
-                           <goal>integration-test</goal>
-                           <goal>verify</goal>
-                        </goals>
-                        <configuration>
+                  <artifactId>maven-surefire-plugin</artifactId>
+                  <version>${maven-surefile-plugin.version}</version>
+                       <configuration>
                            <parallel>classes</parallel>
                            <threadCount>${threadCount}</threadCount>
                            <systemPropertyVariables>
@@ -163,8 +157,6 @@
                               <include>**/APITestRunner.java</include>
                            </includes>
                         </configuration>
-                     </execution>
-                  </executions>
                </plugin>
             </plugins>
          </build>
@@ -176,17 +168,9 @@
             <plugins>
                <plugin>
                   <groupId>org.apache.maven.plugins</groupId>
-                  <artifactId>maven-failsafe-plugin</artifactId>
-                  <version>${maven-failsafe-plugin.version}</version>
-                  <executions>
-                     <execution>
-                        <goals>
-                           <goal>integration-test</goal>
-                           <goal>verify</goal>
-                        </goals>
-                     </execution>
-                  </executions>
-                        <configuration>
+                  <artifactId>maven-surefire-plugin</artifactId>
+                  <version>${maven-surefile-plugin.version}</version>
+                         <configuration>
                            <parallel>classes</parallel>
                            <threadCount>${threadCount}</threadCount>
 						   <systemPropertyVariables>
@@ -210,17 +194,9 @@
             <plugins>
                <plugin>
                   <groupId>org.apache.maven.plugins</groupId>
-                  <artifactId>maven-failsafe-plugin</artifactId>
-                  <version>${maven-failsafe-plugin.version}</version>
-                  <executions>
-                     <execution>
-                        <goals>
-                           <goal>integration-test</goal>
-                           <goal>verify</goal>
-                        </goals>
-                     </execution>
-                  </executions>
-                     <configuration>
+                  <artifactId>maven-surefire-plugin</artifactId>
+                  <version>${maven-surefile-plugin.version}</version>
+                  <configuration>
                            <parallel>classes</parallel>
                            <threadCount>${threadCount}</threadCount>
                            <systemPropertyVariables>
@@ -244,16 +220,8 @@
             <plugins>
                <plugin>
                   <groupId>org.apache.maven.plugins</groupId>
-                  <artifactId>maven-failsafe-plugin</artifactId>
-                  <version>${maven-failsafe-plugin.version}</version>
-                  <executions>
-                     <execution>
-                        <goals>
-                           <goal>integration-test</goal>
-                           <goal>verify</goal>
-                        </goals>
-                     </execution>
-                  </executions>
+                  <artifactId>maven-surefire-plugin</artifactId>
+                  <version>${maven-surefile-plugin.version}</version>
                   <configuration>
                            <parallel>classes</parallel>
                            <threadCount>${threadCount}</threadCount>
@@ -278,16 +246,8 @@
             <plugins>
                <plugin>
                   <groupId>org.apache.maven.plugins</groupId>
-                  <artifactId>maven-failsafe-plugin</artifactId>
-                  <version>${maven-failsafe-plugin.version}</version>
-                  <executions>
-                     <execution>
-                        <goals>
-                           <goal>integration-test</goal>
-                           <goal>verify</goal>
-                        </goals>
-                     </execution>
-                  </executions>
+                  <artifactId>maven-surefire-plugin</artifactId>
+                  <version>${maven-surefile-plugin.version}</version>
                   <configuration>
                            <parallel>classes</parallel>
                            <threadCount>${threadCount}</threadCount>
